@@ -1,43 +1,39 @@
-<div class="row">
-  <div class="col-xxxl-3 col-md-6" *ngFor="let statusCard of statusCards">
-    <ngx-status-card [title]="statusCard.title"
-                     [type]="statusCard.type">
-      <i [ngClass]="statusCard.iconClass"></i>
-    </ngx-status-card>
-  </div>
-</div>
+<ngx-grid>
 
-<div class="row">
-  <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
-    <ngx-temperature></ngx-temperature>
-  </div>
+  <ngx-temperature
+    ngxWidget
+    [ngxWidgetHeight]="11"
+    [ngxWidgetWidth]="7">
+  </ngx-temperature>
 
-  <div class="col-xxxl-9 col-xxl-8 col-lg-7 col-md-6">
-    <ngx-electricity></ngx-electricity>
-  </div>
-</div>
+  <ngx-electricity
+    ngxWidget
+    [ngxWidgetHeight]="11"
+    [ngxWidgetWidth]="17">
+  </ngx-electricity>
 
-<div class="row">
-  <div class="col-xxxl-9 col-xl-12">
-    <ngx-rooms></ngx-rooms>
-  </div>
+  <!--<ngx-rooms ngxWidget ngxWidgetHeight="4" ngxWidgetWidth="8"></ngx-rooms>-->
 
-  <div class="col-xxxl-3 col-xxl-4 col-lg-7 col-md-6">
-    <ngx-contacts></ngx-contacts>
-  </div>
+  <!--<ngx-contacts ngxWidget ngxWidgetHeight="4" ngxWidgetWidth="3"></ngx-contacts>-->
 
-  <div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">
-    <ngx-solar [chartValue]="72"></ngx-solar>
+  <!--<ngx-solar [chartValue]="72" ngxWidget ngxWidgetHeight="2" ngxWidgetWidth="3"></ngx-solar>-->
 
-    <ngx-kitten></ngx-kitten>
-  </div>
+  <!--<ngx-traffic ngxWidget ngxWidgetHeight="2" ngxWidgetWidth="3"></ngx-traffic>-->
 
-  <div class="col-xxxl-3 col-xxl-4 col-md-5">
-    <ngx-traffic></ngx-traffic>
-    <ngx-weather></ngx-weather>
-  </div>
+  <!--<ngx-security-cameras ngxWidget ngxWidgetHeight="5" ngxWidgetWidth="5"></ngx-security-cameras>-->
 
-  <div class="col-xxxl-6 col-xxl-12 col-md-7">
-    <ngx-security-cameras></ngx-security-cameras>
-  </div>
-</div>
+  <!--<ngx-kitten ngxWidget ngxWidgetHeight="3" ngxWidgetWidth="3"></ngx-kitten>-->
+
+  <!--<ngx-weather ngxWidget ngxWidgetHeight="3" ngxWidgetWidth="3"></ngx-weather>-->
+
+</ngx-grid>
+
+<!--<div class="col-xxxl-3 col-xxl-4 col-lg-5 col-md-6">-->
+<!--</div>-->
+
+<!--<div class="col-xxxl-3 col-xxl-4 col-md-5">-->
+<!--</div>-->
+
+<!--<div class="col-xxxl-6 col-xxl-12 col-md-7">-->
+<!--</div>-->
+<!--</div>-->

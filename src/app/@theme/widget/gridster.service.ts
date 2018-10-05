@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { ElementRef, Injectable } from '@angular/core';
 
 export class NgxWidgetBoundingRect {
   top: number;
@@ -29,10 +29,20 @@ export class NgxGridsterService {
       .gridster({
         widget_base_dimensions: [config.gridColumnHeight, config.gridColumnWidth],
         widget_margins: [config.widgetMarginX, config.widgetMarginY],
-        resize: { enabled: true },
+        draggable: {
+          stop: this.serialize.bind(this),
+        },
+        resize: {
+          enabled: true,
+          stop: this.serialize.bind(this),
+        },
         widget_selector: '[ngxWidget]',
       })
       .data('gridster');
+  }
+
+  addWidget(elementRef: ElementRef, sizex?, sizey?, col?, row?) {
+    this.grid.add_widget(elementRef, sizex, sizey, col, row);
   }
 
   enable() {
@@ -45,9 +55,18 @@ export class NgxGridsterService {
     this.grid.disable_resize();
   }
 
-  serialize() {
-    return this.grid.serialize()
+  protected serialize() {
+    const serialized = this.grid.serialize()
       .map(this.cast.bind(this));
+    this.persist(serialized);
+  }
+
+  load(): NgxWidgetBoundingRect[] {
+    return JSON.parse(localStorage.getItem('widgets'));
+  }
+
+  protected persist(widgetsData: NgxWidgetBoundingRect) {
+    localStorage.setItem('widgets', JSON.stringify(widgetsData));
   }
 
   protected cast({ col, row, size_x, size_y }): NgxWidgetBoundingRect {

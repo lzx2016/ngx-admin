@@ -1,6 +1,7 @@
-import {Component, OnDestroy} from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
-import { takeWhile } from 'rxjs/operators/takeWhile' ;
+import { takeWhile } from 'rxjs/operators/takeWhile';
+import { NbGridComponent } from '../../@theme/widget/grid.component';
 
 interface CardSettings {
   title: string;
@@ -15,8 +16,7 @@ interface CardSettings {
 })
 export class DashboardComponent implements OnDestroy {
 
-  private alive = true;
-
+  @ViewChild(NbGridComponent) grid: NbGridComponent;
   lightCard: CardSettings = {
     title: 'Light',
     iconClass: 'nb-lightbulb',
@@ -37,16 +37,13 @@ export class DashboardComponent implements OnDestroy {
     iconClass: 'nb-coffee-maker',
     type: 'warning',
   };
-
   statusCards: string;
-
   commonStatusCardsSet: CardSettings[] = [
     this.lightCard,
     this.rollerShadesCard,
     this.wirelessAudioCard,
     this.coffeeMakerCard,
   ];
-
   statusCardsByThemes: {
     default: CardSettings[];
     cosmic: CardSettings[];
@@ -73,13 +70,18 @@ export class DashboardComponent implements OnDestroy {
       },
     ],
   };
+  private alive = true;
 
   constructor(private themeService: NbThemeService) {
     this.themeService.getJsTheme()
       .pipe(takeWhile(() => this.alive))
       .subscribe(theme => {
         this.statusCards = this.statusCardsByThemes[theme.name];
-    });
+      });
+  }
+
+  addWidget() {
+    this.grid.addWidget({});
   }
 
   ngOnDestroy() {

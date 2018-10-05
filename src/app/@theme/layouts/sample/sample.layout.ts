@@ -54,7 +54,7 @@ import { StateService } from '../../../@core/data/state.service';
                   state="collapsed"
                   fixed
                   [end]="sidebar.id !== 'end'">
-        <ngx-theme-settings></ngx-theme-settings>
+        <ngx-widget-lib></ngx-widget-lib>
       </nb-sidebar>
     </nb-layout>
   `,

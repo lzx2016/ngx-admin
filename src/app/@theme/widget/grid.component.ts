@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostBinding } from '@angular/core';
+import { AfterViewInit, Component, ElementRef } from '@angular/core';
 import { NgxGridConfig, NgxGridsterService } from './gridster.service';
 
 

@@ -64,6 +64,7 @@ const NB_MODULES = [
   NgbModule,
   NbSecurityModule, // *nbIsGranted directive,
   NbProgressBarModule,
+  NgxWidgetModule,
 ];
 
 const COMPONENTS = [

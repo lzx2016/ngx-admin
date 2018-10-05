@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
 
+export class NgxWidgetBoundingRect {
+  top: number;
+  left: number;
+  height: number;
+  width: number;
+}
+
 export class NgxGridConfig {
   widgetMarginX: number = 32;
   widgetMarginY: number = 32;
@@ -16,9 +23,6 @@ export class NgxGridConfig {
 export class NgxGridsterService {
 
   grid;
-
-  constructor() {
-  }
 
   createGrid(config: NgxGridConfig) {
     this.grid = $(config.gridElement)
@@ -39,5 +43,14 @@ export class NgxGridsterService {
   disable() {
     this.grid.disable();
     this.grid.disable_resize();
+  }
+
+  serialize() {
+    return this.grid.serialize()
+      .map(this.cast.bind(this));
+  }
+
+  protected cast({ col, row, size_x, size_y }): NgxWidgetBoundingRect {
+    return { top: row, left: col, width: size_x, height: size_y };
   }
 }

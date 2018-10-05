@@ -20,14 +20,14 @@ export class DndSwitcherComponent {
 
   @Input() vertical: boolean = false;
 
-  constructor(protected gridsterService: NgxGridsterService) {
+  constructor(protected gridster: NgxGridsterService) {
   }
 
   toggleDirection(enabled: boolean) {
     if (enabled) {
-      this.gridsterService.enable();
+      this.gridster.enable();
     } else {
-      this.gridsterService.disable();
+      this.gridster.disable();
     }
   }
 }

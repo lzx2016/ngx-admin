@@ -8,6 +8,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { NgxGridConfig, NgxGridsterService, NgxWidgetBoundingRect } from './gridster.service';
+import { TrafficComponent } from './widgets-lib/traffic/traffic.component';
 
 @Component({
   selector: 'ngx-widget-stub',
@@ -26,6 +27,16 @@ export class NgxWidgetStubComponent {
 
 @Component({
   selector: 'ngx-grid',
+  styles: [`
+    /deep/ [data-col] {
+      overflow: hidden;
+    }
+
+    /deep/ [data-col] /deep/ nb-card {
+      margin: 0;
+      height: 100% !important;
+    }
+  `],
   template: `
     <ng-template></ng-template>
   `,
@@ -48,8 +59,9 @@ export class NbGridComponent implements OnInit {
   }
 
   addWidget(rect: Partial<NgxWidgetBoundingRect>) {
-    const factory = this.cfr.resolveComponentFactory(NgxWidgetStubComponent);
+    const factory = this.cfr.resolveComponentFactory(TrafficComponent);
     const componentRef = this.anchor.createComponent(factory);
+    componentRef.location.nativeElement.setAttribute('ngxWidget', '');
     this.gridster.addWidget(
       componentRef.location.nativeElement,
       rect.width,

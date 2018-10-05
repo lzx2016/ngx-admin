@@ -6,40 +6,35 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {
   NbActionsModule,
   NbCardModule,
+  NbCheckboxModule,
+  NbContextMenuModule,
   NbLayoutModule,
   NbMenuModule,
+  NbPopoverModule,
+  NbProgressBarModule,
   NbRouteTabsetModule,
   NbSearchModule,
   NbSidebarModule,
   NbTabsetModule,
   NbThemeModule,
   NbUserModule,
-  NbCheckboxModule,
-  NbPopoverModule,
-  NbContextMenuModule,
-  NbProgressBarModule,
 } from '@nebular/theme';
 
 import { NbSecurityModule } from '@nebular/security';
 
 import {
+  DndSwitcherComponent,
   FooterComponent,
   HeaderComponent,
-  SearchInputComponent,
-  ThemeSettingsComponent,
-  SwitcherComponent,
   LayoutDirectionSwitcherComponent,
+  SearchInputComponent,
+  SwitcherComponent,
+  ThemeSettingsComponent,
   ThemeSwitcherComponent,
-  TinyMCEComponent,
   ThemeSwitcherListComponent,
+  TinyMCEComponent,
 } from './components';
-import {
-  CapitalizePipe,
-  PluralPipe,
-  RoundPipe,
-  TimingPipe,
-  NumberWithCommasPipe,
-} from './pipes';
+import { CapitalizePipe, NumberWithCommasPipe, PluralPipe, RoundPipe, TimingPipe } from './pipes';
 import {
   OneColumnLayoutComponent,
   SampleLayoutComponent,
@@ -49,6 +44,7 @@ import {
 import { DEFAULT_THEME } from './styles/theme.default';
 import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
+import { NgxWidgetModule } from './widget/widget.module';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -84,6 +80,7 @@ const COMPONENTS = [
   SampleLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
+  DndSwitcherComponent,
 ];
 
 const ENTRY_COMPONENTS = [
@@ -103,10 +100,11 @@ const NB_THEME_PROVIDERS = [
     {
       name: 'cosmic',
     },
-    [ DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME ],
+    [DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME],
   ).providers,
   ...NbSidebarModule.forRoot().providers,
   ...NbMenuModule.forRoot().providers,
+  ...NgxWidgetModule.forRoot().providers,
 ];
 
 @NgModule({

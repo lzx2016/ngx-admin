@@ -1,4 +1,5 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef } from '@angular/core';
+import { NgxGridsterService } from './gridster.service';
 
 
 @Component({
@@ -11,12 +12,11 @@ import { AfterViewInit, Component } from '@angular/core';
 })
 
 export class NbGridComponent implements AfterViewInit {
+  constructor(protected gridster: NgxGridsterService,
+              protected elementRef: ElementRef) {
+  }
+
   ngAfterViewInit() {
-    $('ngx-grid').gridster({
-      widget_base_dimensions: [16, 16],
-      widget_margins: [32, 32],
-      resize: { enabled: true },
-      widget_selector: '[ngxWidget]',
-    });
+    this.gridster.createGrid(this.elementRef);
   }
 }

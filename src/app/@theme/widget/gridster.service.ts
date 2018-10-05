@@ -1,4 +1,16 @@
-import { ElementRef, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
+
+export class NgxGridConfig {
+  widgetMarginX: number = 32;
+  widgetMarginY: number = 32;
+  gridColumnHeight: number = 140;
+  gridColumnWidth: number = 140;
+  gridElement: HTMLElement;
+
+  constructor(config: Partial<NgxGridConfig>) {
+    Object.assign(this, config);
+  }
+}
 
 @Injectable()
 export class NgxGridsterService {
@@ -8,11 +20,11 @@ export class NgxGridsterService {
   constructor() {
   }
 
-  createGrid(elementRef: ElementRef) {
-    this.grid = $(elementRef.nativeElement)
+  createGrid(config: NgxGridConfig) {
+    this.grid = $(config.gridElement)
       .gridster({
-        widget_base_dimensions: [16, 16],
-        widget_margins: [32, 32],
+        widget_base_dimensions: [config.gridColumnHeight, config.gridColumnWidth],
+        widget_margins: [config.widgetMarginX, config.widgetMarginY],
         resize: { enabled: true },
         widget_selector: '[ngxWidget]',
       })

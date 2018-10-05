@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, ElementRef } from '@angular/core';
-import { NgxGridsterService } from './gridster.service';
+import { AfterViewInit, Component, ElementRef, HostBinding } from '@angular/core';
+import { NgxGridConfig, NgxGridsterService } from './gridster.service';
 
 
 @Component({
@@ -17,6 +17,13 @@ export class NbGridComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.gridster.createGrid(this.elementRef);
+    const config = this.createGridConfig();
+    this.gridster.createGrid(config);
+  }
+
+  protected createGridConfig(): NgxGridConfig {
+    return new NgxGridConfig({
+      gridElement: this.elementRef.nativeElement,
+    });
   }
 }
